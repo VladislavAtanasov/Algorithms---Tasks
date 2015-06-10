@@ -1,18 +1,24 @@
 public class Stack {
-	private static Vector vec = new Vector();
+	private static Queue que = new Queue();
 	public void push(int value){
-		vec.add(value);
+		que.push(value);
 	}
 	public int pop(){
-		int lastElement = vec.get(vec.size() - 1);
-		vec.remove(vec.size() - 1);
-		return lastElement;
+	    for (int i = 0; i < que.size() - 1; i++) {
+			int firstElement = que.pop();
+			que.push(firstElement);
+		}
+	    return que.pop();
 	}
 	public int peek(){
-		return vec.get(vec.size() - 1);
+		for (int i = 0; i < que.size() - 1; i++) {
+			int firstElement = que.pop();
+			que.push(firstElement);
+		}
+	    return que.peek();
 	}
 	public int size(){
-		return vec.size();
+		return que.size();
 	}
 	public static void main(String[] args) {
 		Stack stack = new Stack();
@@ -23,6 +29,7 @@ public class Stack {
 		stack.push(41);
 		System.out.println(stack.pop());
 		System.out.println(stack.size());
+		System.out.println(stack.peek());
 	}
 
 }
